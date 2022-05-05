@@ -1,15 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Platform } from 'react-native';
+
+import React, {useEffect, useState} from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation, NavigationContainer } from '@react-navigation/native'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-// import 'react-native-gesture-handler';
+
+function People() {
+  useEffect( () => {
+    fetchItems();
+  }, []);
+  const [items, setItems] = useState([]);
+
+  const fetchItems = async () => {
+    const data = await fetch('/person');
+    const items = await data.json();
+    setItems(items);
+    console.log('hello');
+  };
+  return(
+    items.map(item =>{
+      <Text>
+        item.name
+      </Text>
+    })
+    
+  )
+}
 
 const MenuScreen = () => {
   const nav = useNavigation();
-
+  
   return (
     <View style={styles.container}>
+      <Text>{People()}</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Pressable style={styles.button} onPress={() => nav.navigate("NewRanking")}>
           <Text style={styles.buttonText}>New Ranking</Text>
@@ -88,6 +112,7 @@ const NewScoreScreen = () => {
 
 const Stack = createStackNavigator();
 
+
 export const AppNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen name="Menu" component={MenuScreen} />
@@ -95,13 +120,12 @@ export const AppNavigator = () => (
     <Stack.Screen name="Ranking" component={RankingScreen} />
     <Stack.Screen name="NewScore" component={NewScoreScreen} />
   </Stack.Navigator>
-);
+  );
 
-const App = () => (
+const App = () => (  
   <NavigationContainer >
     <AppNavigator />
-  </NavigationContainer>
-);
+  </NavigationContainer>);
 
 export default App;
 
