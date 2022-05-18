@@ -1,32 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, TextInput, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation, NavigationContainer } from '@react-navigation/native'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-import { FlatList } from 'react-native-gesture-handler';
-import React, {component} from 'react';
 
 // Views
 const MenuScreen = () => {
   const nav = useNavigation();
-  state ={
-    data:[]
-  }
-
-  // fetchData= async() => {
-  //   const response = await fetch('http://192.168.0.102:3000/person')
-  //   const person = await response.json();
-  //   setState({data: person})
-  // }
 
   return (
     <View style={styles.container}>
-      {/* <FlatList data={state.data}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({item}) =>
-      <View>
-        <Text>{item.name}</Text>
-      </View>} */}
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <Pressable style={styles.button} onPress={() => nav.navigate("NewRanking")}>
@@ -43,22 +25,21 @@ const MenuScreen = () => {
 
 const NewRankingScreen = () => {
   const nav = useNavigation();
-  // const onSubmit = (d) => Alert.alert(JSON.stringify(d));
 
   return (
     <View style={styles.container}>      
-        <Text style={styles.simpleText}>Player 1</Text>
-        <TextInput style={styles.inputBox} />
-      
-        <Text style={styles.simpleText}>Player 2</Text>
-        <TextInput style={styles.inputBox} />
+      <Text style={styles.simpleText}>Player 1</Text>
+      <TextInput style={styles.inputBox} />
+    
+      <Text style={styles.simpleText}>Player 2</Text>
+      <TextInput style={styles.inputBox} />
   
       <Text style={styles.simpleText}>Player 3</Text>
-
       <TextInput style={styles.inputBox} />
     
       <Text style={styles.simpleText}>Player 4</Text>
       <TextInput style={styles.inputBox} />
+
       <Text style={styles.simpleText}>Type of scoring</Text>
       <View style={styles.buttonContainer}>
         <Pressable style={styles.button}>
@@ -96,9 +77,6 @@ const RankingScreen = () => {
           <Text style={styles.buttonText}>Player 4 : 12</Text>
         </Pressable>
       </ScrollView>
-      
-      {/* not sure if the status bar is necessary / what it does */}
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -128,7 +106,7 @@ const Stack = createStackNavigator();
 
 export const AppNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Menu" component={MenuScreen} />
+    <Stack.Screen name="blah" component={MenuScreen} />
     <Stack.Screen name="NewRanking" component={NewRankingScreen} />
     <Stack.Screen name="Ranking" component={RankingScreen} />
     <Stack.Screen name="NewScore" component={NewScoreScreen} />
@@ -204,9 +182,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     margin: 10,
     padding: 12,
-    // justifyContent: 'center',
-    // alignContent: 'center',
-    // textAlign: 'center',
   },
   playerText: {
     color: 'lightpink',
