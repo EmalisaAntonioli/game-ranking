@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation, NavigationContainer } from '@react-navigation/native'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
@@ -11,14 +11,31 @@ const MenuScreen = () => {
     <View style={styles.container}>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Pressable style={styles.button} onPress={() => nav.navigate("NewRanking")}>
+        <Pressable style={styles.button} onPress={() => nav.navigate("New Ranking")}>
           <Text style={styles.buttonText}>New Ranking</Text>
         </Pressable>
         <Pressable style={styles.button} onPress = {() => nav.navigate("Ranking")}>
-          <Text style={styles.buttonText}>Ranking</Text>
+          <Text style={styles.buttonText}>Ranking 1</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress = {() => nav.navigate("Ranking")}>
+          <Text style={styles.buttonText}>Ranking 2</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress = {() => nav.navigate("Ranking")}>
+          <Text style={styles.buttonText}>Ranking 3</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress = {() => nav.navigate("Ranking")}>
+          <Text style={styles.buttonText}>Ranking 4</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress = {() => nav.navigate("Ranking")}>
+          <Text style={styles.buttonText}>Ranking 5</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress = {() => nav.navigate("Ranking")}>
+          <Text style={styles.buttonText}>Ranking 6</Text>
         </Pressable>
       </ScrollView>
-
+      <View style={styles.footer}>
+        <Text>Created by Emalisa Antonioli, 2022</Text>
+      </View>
     </View>
   );  
 }
@@ -27,7 +44,12 @@ const NewRankingScreen = () => {
   const nav = useNavigation();
 
   return (
-    <View style={styles.container}>      
+    <View style={styles.container}>
+      <Text style={styles.simpleText}>What's the name of the game?</Text>
+      <TextInput style={styles.inputBox} />
+
+      <Text style={styles.simpleText}>Who's playing?</Text>
+
       <Text style={styles.simpleText}>Player 1</Text>
       <TextInput style={styles.inputBox} />
     
@@ -50,7 +72,7 @@ const NewRankingScreen = () => {
         </Pressable>
       </View>
 
-      <Pressable style={styles.button} title="Confirm" onPress={() => nav.navigate("Ranking")}>
+      <Pressable style={styles.button} title="Confirm" onPress={() => nav.navigate("Game Ranking")}>
         <Text style={styles.buttonText}>Confirm</Text>
       </Pressable>
     </View>
@@ -63,20 +85,21 @@ const RankingScreen = () => {
     return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("NewScore")}>
+        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("New Score")}>
           <Text style={styles.buttonText}>Player 1 : 25</Text>
         </Pressable>
-        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("NewScore")}>
+        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("New Score")}>
           <Text style={styles.buttonText}>Player 2 : 20</Text>
         </Pressable>
 
-        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("NewScore")}>
+        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("New Score")}>
           <Text style={styles.buttonText}>Player 3 : 17</Text>
         </Pressable>
-        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("NewScore")}>
+        <Pressable style={styles.button} title="Add Score" onPress={() => nav.navigate("New Score")}>
           <Text style={styles.buttonText}>Player 4 : 12</Text>
         </Pressable>
       </ScrollView>
+
     </View>
   );
 }
@@ -106,10 +129,10 @@ const Stack = createStackNavigator();
 
 export const AppNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="blah" component={MenuScreen} />
-    <Stack.Screen name="NewRanking" component={NewRankingScreen} />
+    <Stack.Screen name="Game Ranking" component={MenuScreen} />
     <Stack.Screen name="Ranking" component={RankingScreen} />
-    <Stack.Screen name="NewScore" component={NewScoreScreen} />
+    <Stack.Screen name="New Ranking" component={NewRankingScreen} />
+    <Stack.Screen name="New Score" component={NewScoreScreen} />
   </Stack.Navigator>
   );
 
@@ -152,6 +175,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 60,
   },
+  footer: {
+    paddingBottom: 8,
+  },
   inputBox: {
     borderColor: 'lightpink',
     borderWidth: 1,
@@ -163,32 +189,11 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
     padding: 1,
   },
-  navbar: {
-    height: 80,
-    width: '100%',
-    backgroundColor: 'blue',
-  },
   simpleText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-  },
-  playerButton: {
-    backgroundColor: 'ivory',
-    height: 80,
-    width: 300,
-    borderRadius: 30,
-    flexDirection: 'column',
-    margin: 10,
-    padding: 12,
-  },
-  playerText: {
-    color: 'lightpink',
-    fontSize: 40,
-    fontWeight: 'bold',
-    flex: 1,
-    textAlign: 'center',
   }
 });
 
